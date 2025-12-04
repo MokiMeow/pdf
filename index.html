@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>PDFast - Fast PDF Tools</title>
+  <meta name="description" content="Free PDF tools that run in your browser. No uploads. No accounts. Just results." />
+
+  <!-- Theme - Black -->
+  <meta name="theme-color" content="#0F0F0F" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts - Playfair Display & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    rel="stylesheet">
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'system-ui', 'sans-serif'],
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+          },
+          colors: {
+            ink: '#0F0F0F',
+            paper: '#FCF5F0',
+            accent: '#FF3C00',
+            muted: '#78736E',
+            success: '#00B450',
+            error: '#DC2828',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Preloader - Brutalist Theme -->
+  <style>
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #FCF5F0;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #0F0F0F;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .loader-text {
+      margin-top: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: #78736E;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+        "react/": "https://aistudiocdn.com/react@^19.2.1/",
+        "react": "https://aistudiocdn.com/react@^19.2.1",
+        "pdf-lib": "https://aistudiocdn.com/pdf-lib@^1.17.1"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body class="antialiased bg-paper text-ink">
+  <div id="preloader">
+    <div class="loader"></div>
+    <p class="loader-text">Loading...</p>
+  </div>
+  <div id="root"></div>
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('preloader').classList.add('loaded'), 300);
+    });
+  </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

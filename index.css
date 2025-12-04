@@ -1,0 +1,377 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================
+   EDITORIAL BRUTALIST DESIGN SYSTEM
+   High contrast • Bold typography • Intentional rawness
+   ===================================================== */
+
+:root {
+  /* Stark palette - one bold accent */
+  --ink: 15 15 15;
+  --paper: 252 250 245;
+  --accent: 255 60 0;
+  --muted: 120 115 110;
+
+  /* Functional */
+  --success: 0 180 80;
+  --error: 220 40 40;
+}
+
+/* =====================================================
+   BASE
+   ===================================================== */
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: rgb(var(--paper));
+  color: rgb(var(--ink));
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Display font - bold editorial */
+h1,
+h2,
+h3,
+.display {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Scrollbar - minimal */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--paper));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--ink));
+}
+
+/* Selection */
+::selection {
+  background: rgb(var(--accent));
+  color: white;
+}
+
+/* =====================================================
+   ANIMATIONS - Purposeful, not decorative
+   ===================================================== */
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =====================================================
+   BUTTONS - Bold, no-nonsense
+   ===================================================== */
+.btn {
+  @apply inline-flex items-center justify-center font-semibold transition-all duration-150;
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  @apply disabled:opacity-40 disabled:cursor-not-allowed;
+  border: 2px solid rgb(var(--ink));
+}
+
+.btn-primary {
+  @apply btn text-white;
+  background: rgb(var(--ink));
+}
+
+.btn-primary:hover {
+  background: rgb(var(--accent));
+  border-color: rgb(var(--accent));
+}
+
+.btn-secondary {
+  @apply btn;
+  background: transparent;
+  color: rgb(var(--ink));
+}
+
+.btn-secondary:hover {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+}
+
+.btn-ghost {
+  @apply btn border-0;
+  color: rgb(var(--muted));
+}
+
+.btn-ghost:hover {
+  color: rgb(var(--ink));
+}
+
+.btn-sm {
+  @apply px-4 py-2 text-sm gap-2;
+}
+
+.btn-md {
+  @apply px-5 py-2.5 text-sm gap-2;
+}
+
+.btn-lg {
+  @apply px-6 py-3 text-base gap-2;
+}
+
+/* =====================================================
+   INPUTS - Clean, bordered
+   ===================================================== */
+.input {
+  @apply w-full px-4 py-3 transition-all duration-150;
+  background: transparent;
+  border: 2px solid rgb(var(--ink) / 0.2);
+  color: rgb(var(--ink));
+}
+
+.input::placeholder {
+  color: rgb(var(--muted));
+}
+
+.input:hover {
+  border-color: rgb(var(--ink) / 0.4);
+}
+
+.input:focus {
+  @apply outline-none;
+  border-color: rgb(var(--ink));
+}
+
+/* =====================================================
+   CARDS - Sharp edges, strong borders
+   ===================================================== */
+.card {
+  background: rgb(var(--paper));
+  border: 2px solid rgb(var(--ink));
+  transition: all 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: 8px 8px 0 rgb(var(--ink));
+  transform: translate(-4px, -4px);
+}
+
+.card-flat {
+  background: rgb(var(--paper));
+  border: 2px solid rgb(var(--ink) / 0.15);
+}
+
+/* =====================================================
+   UPLOAD ZONE - Editorial grid pattern
+   ===================================================== */
+.upload-zone {
+  @apply relative p-12 text-center cursor-pointer transition-all duration-150;
+  border: 3px dashed rgb(var(--ink));
+  background:
+    linear-gradient(90deg, rgb(var(--ink) / 0.03) 1px, transparent 1px),
+    linear-gradient(rgb(var(--ink) / 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.upload-zone:hover {
+  border-style: solid;
+  background-color: rgb(var(--ink) / 0.02);
+}
+
+.upload-zone.active {
+  border-color: rgb(var(--accent));
+  background-color: rgb(var(--accent) / 0.05);
+}
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
+.sidebar-item {
+  @apply flex items-center gap-3 px-3 py-2.5 font-medium transition-all duration-100;
+  color: rgb(var(--muted));
+  border-left: 3px solid transparent;
+}
+
+.sidebar-item:hover {
+  color: rgb(var(--ink));
+  background: rgb(var(--ink) / 0.03);
+}
+
+.sidebar-item.active {
+  color: rgb(var(--ink));
+  background: rgb(var(--ink) / 0.05);
+  border-left-color: rgb(var(--accent));
+}
+
+/* =====================================================
+   TOOL CARDS - Grid with hover effect
+   ===================================================== */
+.tool-card {
+  @apply p-5 cursor-pointer;
+  border: 2px solid rgb(var(--ink) / 0.1);
+  background: rgb(var(--paper));
+  transition: all 0.15s ease;
+}
+
+.tool-card:hover {
+  border-color: rgb(var(--ink));
+  box-shadow: 4px 4px 0 rgb(var(--ink));
+  transform: translate(-2px, -2px);
+}
+
+.tool-card:hover .tool-icon {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+}
+
+.tool-icon {
+  @apply w-10 h-10 flex items-center justify-center transition-all duration-150;
+  border: 2px solid rgb(var(--ink));
+  color: rgb(var(--ink));
+}
+
+/* =====================================================
+   CATEGORY
+   ===================================================== */
+.category-header {
+  @apply flex items-center gap-4 mb-4;
+}
+
+.category-title {
+  @apply text-xs font-bold uppercase tracking-widest;
+  color: rgb(var(--muted));
+}
+
+.category-line {
+  @apply flex-1 h-px;
+  background: rgb(var(--ink) / 0.1);
+}
+
+/* =====================================================
+   BADGES
+   ===================================================== */
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+  border: 1px solid currentColor;
+}
+
+.badge-new {
+  color: rgb(var(--success));
+}
+
+/* =====================================================
+   PROGRESS
+   ===================================================== */
+.progress {
+  @apply h-1 overflow-hidden;
+  background: rgb(var(--ink) / 0.1);
+}
+
+.progress-bar {
+  @apply h-full;
+  background: rgb(var(--ink));
+}
+
+/* =====================================================
+   HERO - Bold editorial
+   ===================================================== */
+.hero {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(var(--paper) / 0.03) 1px, transparent 1px),
+    linear-gradient(rgb(var(--paper) / 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* =====================================================
+   CHAT
+   ===================================================== */
+.chat-bubble {
+  @apply px-4 py-3 text-sm leading-relaxed max-w-[80%];
+}
+
+.chat-bubble-user {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+}
+
+.chat-bubble-ai {
+  background: rgb(var(--ink) / 0.05);
+  color: rgb(var(--ink));
+  border: 1px solid rgb(var(--ink) / 0.1);
+}
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+.modal-backdrop {
+  @apply fixed inset-0 z-[100];
+  background: rgb(var(--ink) / 0.8);
+}
+
+.modal-content {
+  background: rgb(var(--paper));
+  border: 2px solid rgb(var(--ink));
+}
+
+/* =====================================================
+   UTILITIES
+   ===================================================== */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease forwards;
+  }
+
+  .text-accent {
+    color: rgb(var(--accent));
+  }
+
+  .bg-accent {
+    background: rgb(var(--accent));
+  }
+}
